@@ -92,7 +92,7 @@ class ServoCamera:
     """Camera tracker that uses YOLO to detect persons and servo to keep them centered"""
     
     def __init__(self, 
-                 model_name='yolov5su',
+                 model_name='yolov5',
                  camera_index=0,
                  pan_pin=33,
                  target_class=0,  # Class 0 is 'person' in COCO dataset
