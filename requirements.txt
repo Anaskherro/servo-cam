@@ -1,0 +1,9 @@
+# Requirements for Jetson Servo Camera Tracker
+# Use Jetson's system OpenCV if already provided; otherwise install opencv-python
+opencv-python>=4.5.0
+torch>=1.9.0
+torchvision>=0.10.0
+numpy>=1.19.0
+yolov5>=6.0.0
+# Optional: Jetson GPIO package (install only on Jetson devices)
+jetson-gpio>=2.2.0
