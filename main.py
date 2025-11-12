@@ -92,7 +92,7 @@ class ServoCamera:
     """Camera tracker that uses YOLO to detect persons and servo to keep them centered"""
     
     def __init__(self, 
-                 model_name='yolov5',
+                 model_name='yolov5su',
                  camera_index=0,
                  pan_pin=33,
                  target_class=0,  # Class 0 is 'person' in COCO dataset
@@ -113,10 +113,14 @@ class ServoCamera:
         self.confidence_threshold = confidence_threshold
         self.use_gpu = use_gpu
         
-        # Load YOLOv5su model optimized for performance
-        print("Loading YOLOv5su model...")
-        self.model = yolov5.load(model_name)
-        self.model.conf = confidence_threshold
+        # Load YOLOv5 weights directly (e.g. "yolov5s.pt")
+        print(f"Loading YOLOv5 weights from {model_name}...")
+        try:
+            # model_name can be a local .pt file like "yolov5s.pt" or a path to it
+            self.model = yolov5.load(model_name)
+            self.model.conf = confidence_threshold
+        except Exception as e:
+            raise RuntimeError(f"Failed to load model weights '{model_name}': {e}")
         
         # Use GPU if available and requested
         if use_gpu:
